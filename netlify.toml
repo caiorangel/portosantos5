@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["mercadopago"]
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "18"
+  MERCADOPAGO_ACCESS_TOKEN = "TEST-3286097988616751-102919-aa9578e50ee02d46daa50bf06f4576cc-96981334"
+  URL = "https://adorable-donut-d7c897.netlify.app"
